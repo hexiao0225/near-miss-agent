@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Near-Miss Agent</title>
+<style>
+  :root {
+    --bg: #0b1020; --panel: #121a2e; --line: #24304d; --text: #e6ebf5; --muted: #8b97b3;
+    --high: #ff5a5f; --medium: #ffb020; --low: #4fc3f7; --none: #5c6784; --accent: #7cdb8a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 system-ui, -apple-system, sans-serif; }
+  header { padding: 20px 24px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+  h1 { margin: 0; font-size: 20px; letter-spacing: .2px; }
+  h1 small { display: block; font-size: 13px; font-weight: 400; color: var(--muted); }
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .stack span { font-size: 11px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
+  main { padding: 20px 24px; max-width: 1400px; margin: 0 auto; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+  input, select { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; font: inherit; }
+  input[type=text] { flex: 1 1 260px; min-width: 0; }
+  button { background: var(--accent); color: #08120a; border: 0; border-radius: 8px; padding: 9px 16px; font: inherit; font-weight: 600; cursor: pointer; }
+  button.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+  button:disabled { opacity: .5; cursor: wait; }
+  .status { color: var(--muted); font-size: 13px; margin-bottom: 16px; min-height: 20px; }
+  .hotspots { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(210px, 100%), 1fr)); gap: 10px; margin-bottom: 20px; }
+  .hot { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; cursor: pointer; }
+  .hot.active { border-color: var(--accent); }
+  .hot b { display: block; font-size: 13px; }
+  .hot .loc { color: var(--muted); font-size: 12px; }
+  .bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; margin-top: 8px; background: var(--line); }
+  .bar i { display: block; }
+  .counts { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: 14px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--none); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+  .card.high { border-left-color: var(--high); } .card.medium { border-left-color: var(--medium); } .card.low { border-left-color: var(--low); }
+  video { width: 100%; aspect-ratio: 16/9; background: #000; display: block; }
+  .novideo { aspect-ratio: 16/9; display: grid; place-items: center; background: #05070f; color: var(--muted); font-size: 12px; }
+  .body { padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .badge { font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; color: #0b1020; }
+  .badge.high { background: var(--high); } .badge.medium { background: var(--medium); } .badge.low { background: var(--low); } .badge.none { background: var(--none); color: var(--text); }
+  .meta { color: var(--muted); font-size: 12px; }
+  .what { font-weight: 600; }
+  .action { font-size: 13px; } .action::before { content: "→ "; color: var(--accent); }
+  details { font-size: 12px; color: var(--muted); }
+  .objs { display: flex; flex-wrap: wrap; gap: 4px; }
+  .objs span { font-size: 11px; background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; color: var(--muted); }
+  #brief { white-space: pre-wrap; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin-bottom: 20px; display: none; }
+  @media (max-width: 600px) { header, main { padding: 16px; } .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Near-Miss Agent <small>Every camera, every near miss between people and vehicles, ranked by risk</small></h1>
+  <div class="stack">
+    <span>VAST DataEngine + VastDB</span><span>NVIDIA Cosmos Reason</span><span>Cosmos Embed</span>
+    <span>YOLO11</span><span>CoreWeave GPUs</span><span id="model-badge">W&amp;B Inference</span>
+  </div>
+</header>
+<main>
+  <div class="controls">
+    <input type="text" id="q" placeholder="Extra query (optional), e.g. forklift reversing near a worker">
+    <select id="min"><option value="0.15">Recall: wide</option><option value="0.2" selected>Recall: normal</option><option value="0.3">Recall: strict</option></select>
+    <button id="scan">Scan all cameras</button>
+    <button id="brief-btn" class="ghost" disabled>Generate safety briefing</button>
+  </div>
+  <div class="status" id="status">Press “Scan all cameras” to search the archive for near misses.</div>
+  <div id="brief"></div>
+  <div class="hotspots" id="hotspots"></div>
+  <div class="grid" id="grid"></div>
+</main>
+<script>
+  // Served at /app behind the Ingress or at / locally; build URLs from wherever we are.
+  const BASE = location.pathname.replace(/\/(index\.html)?$/, '');
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  let last = null, cameraFilter = null;
+
+  async function scan() {
+    $('scan').disabled = true; $('brief-btn').disabled = true;
+    $('status').textContent = 'Searching every camera, then scoring each moment with the LLM…';
+    const params = new URLSearchParams({ min_sim: $('min').value });
+    const extra = $('q').value.trim();
+    if (extra) {
+      ['person close to a moving vehicle', 'pedestrian crossing in front of a moving car',
+       'person stepping back to avoid a vehicle', 'forklift approaching a person in an aisle',
+       'cyclist close to a car or truck', extra].forEach((q) => params.append('q', q));
+    }
+    try {
+      const res = await fetch(`${BASE}/api/scan?${params}`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || res.statusText);
+      last = data; cameraFilter = null;
+      const flagged = data.hits.filter((h) => ['high', 'medium'].includes(h.verdict.risk)).length;
+      $('status').textContent = `${data.hits.length} moments across ${data.cameras.length} cameras · ${flagged} flagged as near misses · search ${data.timing.search_s}s, total ${data.timing.total_s}s · scored by ${data.model}`;
+      $('model-badge').textContent = `W&B · ${data.model.split('/').pop()}`;
+      $('brief-btn').disabled = !data.hits.length;
+      render();
+    } catch (e) {
+      $('status').textContent = `Scan failed: ${e.message}`;
+    } finally { $('scan').disabled = false; }
+  }
+
+  function render() {
+    $('hotspots').innerHTML = last.cameras.map((c) => {
+      const total = c.high + c.medium + c.low + c.none || 1;
+      const seg = (k) => `<i style="width:${(c[k] / total) * 100}%;background:var(--${k})"></i>`;
+      return `<div class="hot ${cameraFilter === c.camera_id ? 'active' : ''}" data-cam="${esc(c.camera_id)}">
+        <b>${esc(c.camera_id)}</b><span class="loc">${esc(c.location)}</span>
+        <div class="bar">${seg('high')}${seg('medium')}${seg('low')}${seg('none')}</div>
+        <div class="counts">${c.high} high · ${c.medium} medium · ${c.low} low</div></div>`;
+    }).join('');
+    document.querySelectorAll('.hot').forEach((el) => el.onclick = () => {
+      cameraFilter = cameraFilter === el.dataset.cam ? null : el.dataset.cam; render();
+    });
+
+    const hits = last.hits.filter((h) => !cameraFilter || h.camera_id === cameraFilter);
+    $('grid').innerHTML = hits.map((h) => {
+      const v = h.verdict, start = Number(h.start) || 0;
+      const video = h.source
+        ? `<video controls muted preload="metadata" src="${BASE}/api/stream?source=${encodeURIComponent(h.source)}#t=${start}"></video>`
+        : '<div class="novideo">no clip</div>';
+      const objs = Object.entries(h.objects || {}).map(([k, n]) => `<span>${esc(k)} ${n}</span>`).join('');
+      return `<div class="card ${v.risk}">${video}<div class="body">
+        <div class="row"><span class="badge ${v.risk}">${v.risk}</span><span class="meta">${esc(h.camera_id)} · ${esc(h.location)} · ${start}–${h.end}s · match ${(h.score * 100).toFixed(0)}%</span></div>
+        <div class="what">${esc(v.actors)}: ${esc(v.what_happened)}</div>
+        <div class="action">${esc(v.action)}</div>
+        <div class="objs">${objs}</div>
+        <details><summary>Cosmos description</summary>${esc(h.caption)}</details>
+      </div></div>`;
+    }).join('') || '<div class="status">No moments for this camera.</div>';
+  }
+
+  async function brief() {
+    $('brief-btn').disabled = true; $('brief').style.display = 'block'; $('brief').textContent = 'Writing briefing…';
+    try {
+      const res = await fetch(`${BASE}/api/briefing`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(last) });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || res.statusText);
+      $('brief').textContent = data.briefing;
+    } catch (e) { $('brief').textContent = `Briefing failed: ${e.message}`; }
+    finally { $('brief-btn').disabled = false; }
+  }
+
+  $('scan').onclick = scan;
+  $('brief-btn').onclick = brief;
+  $('q').addEventListener('keydown', (e) => { if (e.key === 'Enter') scan(); });
+  if (location.hash === '#scan') scan();  // open /app#scan to start the demo already scanning
+</script>
+</body>
+</html>

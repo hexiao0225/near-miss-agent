@@ -1,0 +1,22 @@
+[
+  {"id": "s3://vss-chunks/team-5/20261001_094655_sf1_chunk_0014.mp4", "source": "", "original_video": "s3://vss-chunks/team-5/20261001_094655_sf1_chunk_0014.mp4",
+   "camera_id": "sf_streets_cam-1", "location": "san_francisco", "start": 10, "end": 15, "score": 0.42,
+   "caption": "A silver pickup truck turns through the crosswalk while pedestrians are still crossing; a man in a dark jacket steps back to the curb as the truck passes within a few feet.",
+   "objects": {"person": 10, "truck": 2, "car": 4, "bicycle": 1}, "query": "person stepping back to avoid a vehicle"},
+  {"id": "s3://vss-chunks/team-5/20261001_072246_set06_video_chunk_0029.mp4", "source": "", "original_video": "s3://vss-chunks/team-5/20261001_072246_set06_video_chunk_0029.mp4",
+   "camera_id": "pie_cam-3", "location": "toronto", "start": 15, "end": 20, "score": 0.38,
+   "caption": "The vehicle approaches an intersection while a pedestrian begins crossing in front of it; the ego vehicle brakes and the pedestrian continues across.",
+   "objects": {"person": 3, "car": 5, "truck": 1}, "query": "pedestrian crossing in front of a moving car"},
+  {"id": "s3://vss-chunks/team-5/warehouse_cam2_chunk_0042.mp4", "source": "", "original_video": "s3://vss-chunks/team-5/warehouse_cam2_chunk_0042.mp4",
+   "camera_id": "sdg_warehouse_cam-2", "location": "warehouse3", "start": 0, "end": 5, "score": 0.35,
+   "caption": "A forklift moving along an aisle approaches a worker walking between racks; the worker is in the forklift's path.",
+   "objects": {"person": 1, "forklift": 1}, "query": "forklift approaching a person in an aisle"},
+  {"id": "s3://vss-chunks/team-5/neighborhood_0901_chunk_0101.mp4", "source": "", "original_video": "s3://vss-chunks/team-5/neighborhood_0901_chunk_0101.mp4",
+   "camera_id": "neighborhood_cam-1", "location": "neighborhood", "start": 20, "end": 25, "score": 0.24,
+   "caption": "A car is parked at the curb in front of a house; a person walks along the sidewalk.",
+   "objects": {"person": 1, "car": 1}, "query": "person close to a moving vehicle"},
+  {"id": "s3://vss-chunks/team-5/i24_scene1_p1c3.mp4", "source": "", "original_video": "s3://vss-chunks/team-5/i24_scene1_p1c3.mp4",
+   "camera_id": "i24_cam-1", "location": "nashville", "start": 5, "end": 10, "score": 0.21,
+   "caption": "Dense highway traffic with trucks changing lanes; no pedestrians visible.",
+   "objects": {"car": 31, "truck": 6}, "query": "person close to a moving vehicle"}
+]
