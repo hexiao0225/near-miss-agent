@@ -1,22 +1,260 @@
 [
-  {"id": "s3://vss-chunks/team-5/20261001_094655_sf1_chunk_0014.mp4", "source": "", "original_video": "s3://vss-chunks/team-5/20261001_094655_sf1_chunk_0014.mp4",
-   "camera_id": "sf_streets_cam-1", "location": "san_francisco", "start": 10, "end": 15, "score": 0.42,
-   "caption": "A silver pickup truck turns through the crosswalk while pedestrians are still crossing; a man in a dark jacket steps back to the curb as the truck passes within a few feet.",
-   "objects": {"person": 10, "truck": 2, "car": 4, "bicycle": 1}, "query": "person stepping back to avoid a vehicle"},
-  {"id": "s3://vss-chunks/team-5/20261001_072246_set06_video_chunk_0029.mp4", "source": "", "original_video": "s3://vss-chunks/team-5/20261001_072246_set06_video_chunk_0029.mp4",
-   "camera_id": "pie_cam-3", "location": "toronto", "start": 15, "end": 20, "score": 0.38,
-   "caption": "The vehicle approaches an intersection while a pedestrian begins crossing in front of it; the ego vehicle brakes and the pedestrian continues across.",
-   "objects": {"person": 3, "car": 5, "truck": 1}, "query": "pedestrian crossing in front of a moving car"},
-  {"id": "s3://vss-chunks/team-5/warehouse_cam2_chunk_0042.mp4", "source": "", "original_video": "s3://vss-chunks/team-5/warehouse_cam2_chunk_0042.mp4",
-   "camera_id": "sdg_warehouse_cam-2", "location": "warehouse3", "start": 0, "end": 5, "score": 0.35,
-   "caption": "A forklift moving along an aisle approaches a worker walking between racks; the worker is in the forklift's path.",
-   "objects": {"person": 1, "forklift": 1}, "query": "forklift approaching a person in an aisle"},
-  {"id": "s3://vss-chunks/team-5/neighborhood_0901_chunk_0101.mp4", "source": "", "original_video": "s3://vss-chunks/team-5/neighborhood_0901_chunk_0101.mp4",
-   "camera_id": "neighborhood_cam-1", "location": "neighborhood", "start": 20, "end": 25, "score": 0.24,
-   "caption": "A car is parked at the curb in front of a house; a person walks along the sidewalk.",
-   "objects": {"person": 1, "car": 1}, "query": "person close to a moving vehicle"},
-  {"id": "s3://vss-chunks/team-5/i24_scene1_p1c3.mp4", "source": "", "original_video": "s3://vss-chunks/team-5/i24_scene1_p1c3.mp4",
-   "camera_id": "i24_cam-1", "location": "nashville", "start": 5, "end": 10, "score": 0.21,
-   "caption": "Dense highway traffic with trucks changing lanes; no pedestrians visible.",
-   "objects": {"car": 31, "truck": 6}, "query": "person close to a moving vehicle"}
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_071717_set06_video_chunk_0016.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_071717_set06_video_chunk_0016.mp4",
+  "camera_id": "pie_cam-3",
+  "location": "toronto",
+  "start": 15.0,
+  "end": 20.0,
+  "score": 0.22793991565704347,
+  "caption": "The scene is a narrow, one-way street with a single lane of traffic. The sky is partly cloudy, and the road surface appears dry. A large dump truck is parked on the left side of the street, partially blocking the lane. In front of the camera vehicle, a dark-colored SUV is stopped with its brake lights illuminated. The SUV has a visible license plate reading AZJY 712. To the right, a dark-colored SUV is parked along the curb. Pedestrians are walking on the sidewalk to the right, including one person in a blue jacket and others in darker clothing. There are no visible traffic signals or signs in the immediate area. The camera vehicle remains stationary behind the SUV, with no movement or change in position observed during the clip.",
+  "objects": {
+   "car": 6,
+   "truck": 2,
+   "person": 5
+  },
+  "query": "person close to a moving vehicle"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_075046_0b12b2416a91a8686bf0_016c1396912bfc432997_run_3_seed_1053328212.ceiling_03.rgb_chunk_0000.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_075046_0b12b2416a91a8686bf0_016c1396912bfc432997_run_3_seed_1053328212.ceiling_03.rgb_chunk_0000.mp4",
+  "camera_id": "sdg_warehouse_cam-2",
+  "location": "warehouse3",
+  "start": 5.0,
+  "end": 10.0,
+  "score": 0.4929010629653931,
+  "caption": "A person wearing a white shirt and light-colored pants is walking away from a blue and black forklift on a gray tiled floor. The forklift is stationary with its forks extended forward. The individual appears to be moving toward the back of the scene, maintaining a steady pace. The environment is an indoor warehouse or similar facility with no visible inventory, spills, or other activity besides the person walking.",
+  "objects": {
+   "person": 1
+  },
+  "query": "forklift approaching a person in an aisle"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_074747_0851b7a332077a4fc0e2_01021d3989e38beb3395_run_10_seed_213384163.eye_01.rgb_chunk_0000.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_074747_0851b7a332077a4fc0e2_01021d3989e38beb3395_run_10_seed_213384163.eye_01.rgb_chunk_0000.mp4",
+  "camera_id": "sdg_warehouse_cam-2",
+  "location": "warehouse3",
+  "start": 5.0,
+  "end": 10.0,
+  "score": 0.4864781022071838,
+  "caption": "The video shows a forklift in a warehouse environment. The forklift is black with the word 'ATLAS' visible on its side. It has a platform at the front with two vertical handles and a pedal. The forklift's forks are extended forward. A person wearing a white uniform and gray pants is seen near the forklift, moving away from it. The person appears to be running or moving quickly, possibly in response to something happening off-screen. The background shows a warehouse setting with shelves and various items stored on them. The floor is smooth and dark, typical of a warehouse floor. There are no visible spills, hazards, or other objects in the immediate vicinity of the forklift. The person's movement suggests urgency, but the exact cause is not clear from the video.",
+  "objects": {
+   "person": 1,
+   "dining table": 1,
+   "bench": 3,
+   "cell phone": 1,
+   "skateboard": 1,
+   "suitcase": 1
+  },
+  "query": "forklift approaching a person in an aisle"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_101141_sf4_chunk_0011.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_101141_sf4_chunk_0011.mp4",
+  "camera_id": "sf_streets_cam-4",
+  "location": "san_francisco",
+  "start": 20.0,
+  "end": 25.0,
+  "score": 0.4164535522460937,
+  "caption": "A person wearing a black jacket and blue jeans is crossing the street from right to left, moving steadily across the marked crosswalk. The individual is walking at a normal pace, and there are no signs of unusual behavior or distress. The crosswalk is clearly visible with white stripes and a yellow line running down the center of the road. The traffic light is red, indicating that vehicles should stop, but a white car is seen driving through the intersection, which is a violation of traffic rules. The car is moving from left to right, and its headlights are on, suggesting it might be early morning or late evening. In the background, there are several other vehicles, including a white SUV and a motorcycle, which are either stopped or moving slowly. The scene takes place in an urban area with buildings and trees lining the streets. The sky is clear, and the overall atmosphere appears calm and orderly, with no signs of congestion or chaos.",
+  "objects": {
+   "person": 3,
+   "car": 9,
+   "traffic light": 1,
+   "truck": 2,
+   "motorcycle": 3,
+   "bicycle": 1
+  },
+  "query": "pedestrian crossing in front of a moving car"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_070258_set05_video_chunk_0012.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_070258_set05_video_chunk_0012.mp4",
+  "camera_id": "pie_cam-3",
+  "location": "toronto",
+  "start": 25.0,
+  "end": 30.0,
+  "score": 0.3968401074409485,
+  "caption": "The scene is a residential street intersection with a green traffic light. The road has two lanes in each direction, separated by a double yellow line. A street sign reads \"Glenmore St.\" A white car is visible ahead, driving straight through the intersection. A red pickup truck is parked on the left side of the road. There are no pedestrians, cyclists, or other vehicles present. The sky is clear with some clouds, and trees line both sides of the street.",
+  "objects": {},
+  "query": "cyclist close to a car or truck"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_095242_sf2_chunk_0003.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_095242_sf2_chunk_0003.mp4",
+  "camera_id": "sf_streets_cam-2",
+  "location": "san_francisco",
+  "start": 10.0,
+  "end": 15.0,
+  "score": 0.3906499624252319,
+  "caption": "A white car is parked on the left side of the street, near a building with a 'Fidelity' sign. A bus is visible in the background, moving along the street. A person wearing a backpack is walking across the crosswalk on the right side of the frame. Another person, dressed in dark clothing and carrying a handbag, walks across the foreground from left to right. A fire hydrant is located near the crosswalk on the right side. Traffic lights are present at the intersection, with one showing a red signal. Pedestrians are seen crossing the street, and the overall scene depicts a typical urban intersection with moderate activity.",
+  "objects": {},
+  "query": "pedestrian crossing in front of a moving car"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_101412_sf4_chunk_0017.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_101412_sf4_chunk_0017.mp4",
+  "camera_id": "sf_streets_cam-4",
+  "location": "san_francisco",
+  "start": 20.0,
+  "end": 25.0,
+  "score": 0.38856289386749265,
+  "caption": "The scene is a wide urban street intersection with a marked pedestrian crosswalk in the foreground. Two pedestrians are crossing the street from right to left, walking along the crosswalk. One is wearing a black jacket and dark pants, while the other is dressed in a white top and blue jeans. In the background, a white car is approaching the intersection from the left side of the frame, moving toward the center. A bus is visible further down the street, positioned on the right side of the intersection. Traffic lights are present at the intersection, with one showing red for the direction facing the camera. The surrounding area includes buildings with storefronts, and overhead wires crisscross above the street.",
+  "objects": {
+   "person": 6,
+   "car": 7,
+   "bus": 2,
+   "traffic light": 2,
+   "handbag": 1
+  },
+  "query": "pedestrian crossing in front of a moving car"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_095108_sf1_chunk_0024.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_095108_sf1_chunk_0024.mp4",
+  "camera_id": "sf_streets_cam-1",
+  "location": "san_francisco",
+  "start": 5.0,
+  "end": 10.0,
+  "score": 0.29902039766311644,
+  "caption": "A person wearing a black shirt and black pants is riding a bicycle on the left side of the frame, moving from left to right. Another person wearing a white shirt and black pants is riding a scooter on the right side of the frame, moving from right to left. A white car is driving on the right side of the frame, moving from right to left. A black car is driving on the left side of the frame, moving from left to right. A black SUV is driving on the left side of the frame, moving from left to right. A white car is driving on the right side of the frame, moving from right to left. A black car is driving on the left side of the frame, moving from left to right. A black SUV is driving on the left side of the frame, moving from left to right. A white car is driving on the right side of the frame, moving from right to left. A black car is driving on the left side of the frame, moving from left to right. A black SUV is driving on the left side of the frame, moving from left to right. A white car is driving on the...",
+  "objects": {
+   "car": 9,
+   "person": 4,
+   "bicycle": 2,
+   "fire hydrant": 2,
+   "traffic light": 1,
+   "truck": 1,
+   "bus": 1,
+   "motorcycle": 1
+  },
+  "query": "cyclist close to a car or truck"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_080523_2025_test_Warehouse_017_Camera_01_chunk_0008.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_080523_2025_test_Warehouse_017_Camera_01_chunk_0008.mp4",
+  "camera_id": "smartspace_cam-1",
+  "location": "indoor",
+  "start": 15.0,
+  "end": 20.0,
+  "score": 0.27008250951766966,
+  "caption": "A person is walking in the background, moving from the right side of the frame toward the left. The individual is partially visible and appears to be wearing dark clothing. The person's movement is steady and continuous throughout the clip.",
+  "objects": {
+   "truck": 2,
+   "person": 2,
+   "car": 1,
+   "boat": 1,
+   "bicycle": 1
+  },
+  "query": "person stepping back to avoid a vehicle"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_094358_sf1_chunk_0007.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_094358_sf1_chunk_0007.mp4",
+  "camera_id": "sf_streets_cam-1",
+  "location": "san_francisco",
+  "start": 20.0,
+  "end": 25.0,
+  "score": 0.268978214263916,
+  "caption": "A black SUV is stopped at an intersection, with a person visible inside the driver's seat. Pedestrians are crossing the street in front of the vehicle. A white car is visible in the background, moving along the road. A bicycle is parked on the sidewalk near the intersection. A fire hydrant is located on the sidewalk, and a parking meter is visible nearby. A bench is situated on the sidewalk, and a traffic light is present at the intersection. A person wearing a backpack is walking on the sidewalk.",
+  "objects": {},
+  "query": "pedestrian crossing in front of a moving car"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_095423_sf2_chunk_0007.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_095423_sf2_chunk_0007.mp4",
+  "camera_id": "sf_streets_cam-2",
+  "location": "san_francisco",
+  "start": 0.0,
+  "end": 5.0,
+  "score": 0.2601020336151123,
+  "caption": "A person wearing a black backpack stands on the sidewalk near a crosswalk, facing the street. Another individual with a handbag walks across the crosswalk from left to right. A person on a bicycle is stopped near the curb on the left side of the frame. A pedestrian in dark clothing walks along the sidewalk on the right side of the frame. A motorcycle is visible in the background, moving through the intersection. A black car drives through the intersection from right to left. A white car follows behind the black car. A truck is visible in the background, moving through the intersection. A fire hydrant is located on the sidewalk near the crosswalk. A person wearing a backpack stands on the sidewalk near a crosswalk, facing the street. A person with a handbag walks across the crosswalk from left to right. A person on a bicycle is stopped near the curb on the left side of the frame. A pedestrian in dark clothing walks along the sidewalk on the right side of the frame. A motorcycle is visible in the background...",
+  "objects": {
+   "person": 9,
+   "car": 5,
+   "backpack": 2,
+   "motorcycle": 2,
+   "bicycle": 3,
+   "fire hydrant": 1,
+   "handbag": 1,
+   "truck": 1
+  },
+  "query": "cyclist close to a car or truck"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_100443_sf3_chunk_0001.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_100443_sf3_chunk_0001.mp4",
+  "camera_id": "sf_streets_cam-3",
+  "location": "san_francisco",
+  "start": 0.0,
+  "end": 5.0,
+  "score": 0.24534312486648557,
+  "caption": "A person wearing a backpack walks along the right side of the street, moving toward the foreground. Another individual is seen riding a bicycle across the intersection, heading from the left side of the frame toward the right. Pedestrians are also visible on the sidewalks, some crossing the street at designated crosswalks. A white car drives through the intersection from left to right, while a motorcycle with a delivery box passes by in the same direction. The scene takes place at an urban intersection with visible street signs, including one reading \"Stockton.\" The traffic lights are green, allowing vehicles to proceed. The overall activity suggests a typical city environment with moderate foot and vehicle traffic.",
+  "objects": {
+   "person": 8,
+   "car": 4,
+   "bicycle": 2,
+   "motorcycle": 1,
+   "backpack": 1
+  },
+  "query": "cyclist close to a car or truck"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_080548_2025_test_Warehouse_017_Camera_01_chunk_0009.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_080548_2025_test_Warehouse_017_Camera_01_chunk_0009.mp4",
+  "camera_id": "smartspace_cam-1",
+  "location": "indoor",
+  "start": 5.0,
+  "end": 10.0,
+  "score": 0.3235018849372864,
+  "caption": "A person wearing a blue top and dark pants is riding a bicycle in an indoor space with a dark tiled floor and white brick walls. The cyclist moves steadily forward, maintaining a consistent pace. In the background, a yellow pallet jack is visible, carrying two cardboard boxes. The scene appears to be a warehouse or similar industrial area, with no other people or vehicles present. The cyclist continues along the path, heading toward the right side of the frame.",
+  "objects": {
+   "truck": 1,
+   "person": 2,
+   "bicycle": 1,
+   "motorcycle": 1
+  },
+  "query": "cyclist close to a car or truck"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_074123_neighborhood_20260902_chunk_0012.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_074123_neighborhood_20260902_chunk_0012.mp4",
+  "camera_id": "neighborhood_cam-1",
+  "location": "neighborhood",
+  "start": 20.0,
+  "end": 25.0,
+  "score": 0.3234452247619629,
+  "caption": "The scene is a nighttime outdoor area with several parked vehicles and trees. A car is visible in the background, parked on the left side of the frame. In the foreground, there is a dark-colored vehicle partially obscured by bushes. A donut is visible on the right side of the frame, near a building with lit windows. The environment appears calm with no visible movement or activity.",
+  "objects": {},
+  "query": "person close to a moving vehicle"
+ },
+ {
+  "id": "s3://team-5-vss-chunks/team-5/20261001_073916_neighborhood_20260902_chunk_0007.mp4",
+  "source": "",
+  "original_video": "s3://team-5-vss-chunks/team-5/20261001_073916_neighborhood_20260902_chunk_0007.mp4",
+  "camera_id": "neighborhood_cam-1",
+  "location": "neighborhood",
+  "start": 10.0,
+  "end": 15.0,
+  "score": 0.3191298246383667,
+  "caption": "A vehicle is parked in the background on the left side of the frame, remaining stationary throughout the video. Another vehicle is parked in the foreground on the right side, also remaining stationary. There are no people, unusual behavior, or safety hazards visible in the scene. The environment appears calm and undisturbed.",
+  "objects": {
+   "car": 3
+  },
+  "query": "person close to a moving vehicle"
+ }
 ]

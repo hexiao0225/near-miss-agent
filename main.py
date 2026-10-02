@@ -60,6 +60,8 @@ _token_lock = threading.Lock()
 def _http(method, url, body=None, headers=None, timeout=60):
     data = json.dumps(body).encode() if body is not None else None
     req = urllib.request.Request(url, data=data, method=method, headers=headers or {})
+    # W&B's Cloudflare rejects urllib's default User-Agent with 403 (error 1010).
+    req.add_header("User-Agent", "near-miss-agent/1.0")
     if data is not None:
         req.add_header("Content-Type", "application/json")
     with urllib.request.urlopen(req, timeout=timeout) as resp:
@@ -184,15 +186,38 @@ low = person and moving vehicle in frame but separated
 none = vehicles parked/stopped, or no person"""
 
 
-def llm(messages, max_tokens=300, json_mode=True):
-    body = {"model": WANDB_MODEL, "messages": messages, "max_tokens": max_tokens,
-            "temperature": 0.1}
-    if json_mode:
-        body["response_format"] = {"type": "json_object"}
+_model = {"name": None}
+_model_lock = threading.Lock()
+
+
+def _wandb_headers():
     headers = {"Authorization": f"Bearer {WANDB_KEY}"}
     if WANDB_TEAM:
         headers["OpenAI-Project"] = f"{WANDB_TEAM}/{WANDB_PROJECT}"
-    res = _http("POST", f"{WANDB_BASE}/chat/completions", body, headers, timeout=45)
+    return headers
+
+
+def model():
+    """WANDB_MODEL if the key can use it, else the first instruct model on offer."""
+    with _model_lock:
+        if not _model["name"]:
+            try:
+                ids = [m["id"] for m in _http("GET", f"{WANDB_BASE}/models", None, _wandb_headers())["data"]]
+                instruct = [i for i in ids if "instruct" in i.lower()]
+                _model["name"] = WANDB_MODEL if WANDB_MODEL in ids else (instruct or ids or [WANDB_MODEL])[0]
+            except Exception:  # noqa: BLE001 - listing is best effort
+                _model["name"] = WANDB_MODEL
+        return _model["name"]
+
+
+def llm(messages, max_tokens=300, json_mode=True):
+    body = {"model": model(), "messages": messages, "max_tokens": max_tokens, "temperature": 0.1}
+    if json_mode:
+        body["response_format"] = {"type": "json_object"}
+    try:
+        res = _http("POST", f"{WANDB_BASE}/chat/completions", body, _wandb_headers(), timeout=45)
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(f"W&B {e.code}: {e.read()[:200].decode(errors='replace')}") from e
     return res["choices"][0]["message"]["content"]
 
 
@@ -225,7 +250,7 @@ def score(hit):
         out["risk"] = str(out.get("risk", "none")).lower()
         if out["risk"] not in RISK_ORDER:
             out["risk"] = "none"
-        out["scored_by"] = WANDB_MODEL
+        out["scored_by"] = model()
         return out
     except Exception as e:  # noqa: BLE001 - one bad call must not sink the scan
         fallback = heuristic(hit)
@@ -253,7 +278,8 @@ def scan(params):
                                                 "high": 0, "medium": 0, "low": 0, "none": 0})
         c[h["verdict"]["risk"]] += 1
     return {"hits": hits, "cameras": sorted(cameras.values(), key=lambda c: (-c["high"], -c["medium"])),
-            "queries": queries, "model": WANDB_MODEL if WANDB_KEY and not MOCK else "heuristic",
+            "queries": queries, "model": model() if WANDB_KEY and not MOCK else "heuristic",
+            "llm_scored": sum(h["verdict"].get("scored_by") != "heuristic" for h in hits),
             "timing": {"search_s": round(t_search, 2), "total_s": round(time.time() - t0, 2)}}
 
 
